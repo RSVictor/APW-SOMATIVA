@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Cargo(models.TextChoices):
     MOTORISTA = 'MOTORISTA'
@@ -26,7 +27,7 @@ class Veiculo(models.Model):
 
 
 class Funcionario(models.Model):
-    nome = models.CharField(max_length=100)
+    nome = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     matricula = models.CharField(max_length=100, unique=True)
     email = models.EmailField(max_length=100)
     cpf = models.CharField(max_length=11)  
